@@ -1,19 +1,29 @@
 package com.msislab.robot_ai.controller;
+import org.springframework.http.HttpStatus;
 
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import com.msislab.robot_ai.util.*;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.msislab.robot_ai.model.Detection;
+import com.msislab.robot_ai.service.DetectionService;
+
+
 
 
 @RestController
-@RequestMapping(Const.baseUrl)
+@RequestMapping("/detections")
 public class DetectionController {
 
-    @GetMapping("/")
-    public String getMethodName() {
-        return "Hello Detections API";
+    private DetectionService detectionService;
+
+    // POST endpoint to create a new detection
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public Detection createDetection(@RequestBody Detection detection) {
+        return detectionService.createDetection(detection);
     }
-    
-    
 }
+
