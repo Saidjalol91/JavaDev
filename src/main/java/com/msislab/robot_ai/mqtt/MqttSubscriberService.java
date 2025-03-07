@@ -78,7 +78,7 @@ private LocalDateTime parseTimestamp(String ts) {
             detection.setStatus(defectStatus ? "Defective" : "OK"); // Set status based on defect
             detection.setTimestamp(parseTimestamp(mqttPayload.getTs())); // Convert timestamp
             
-            // detections.add(detection);
+            detections.add(detection);
         }
 
         detectionService.createDetectionList(detections);
