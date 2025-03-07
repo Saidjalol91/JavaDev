@@ -1,7 +1,7 @@
 package com.msislab.robot_ai.mqtt;
 
-import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
 import org.eclipse.paho.client.mqttv3.MqttClient;
+import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
 import org.springframework.beans.factory.annotation.Value;
@@ -18,7 +18,7 @@ public class MqttConfig {
     private String clientId;
 
 
-    @Value("${mqtt.client.timeout}")
+    @Value("${mqtt.timeout}")
     private Integer timeout;
 
     @Bean

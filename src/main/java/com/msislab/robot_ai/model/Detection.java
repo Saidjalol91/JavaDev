@@ -2,17 +2,29 @@ package com.msislab.robot_ai.model;
 
 import java.time.LocalDateTime;
 
-import jakarta.persistence.*;
-import lombok.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 @Entity
-@Table(name = "Detection")
+@Table(name = "detection")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-
 public class Detection {
 
     @Id
@@ -25,25 +37,24 @@ public class Detection {
     @Column(nullable = false)
     private Integer productId;
     
-    @ManyToOne
-    @JoinColumn(name = "surface_id", nullable = false)
+    @ManyToOne(optional = true)
+    @JoinColumn(name = "surface_id", nullable = true)
+    @JsonIgnore
     private CommonType surface;
     
-    @ManyToOne
-    @JoinColumn(name = "model_id", nullable = false)
-    private CommonType model;
+    @Column(nullable = false)
+    private String model;
     
-    @ManyToOne
-    @JoinColumn(name = "status_id", nullable = false)
-    private CommonType status;
+    @Column(nullable = false)
+    private String status;
     
     @Column(nullable = false)
     private LocalDateTime timestamp;
     
-    @Column(nullable = false)
+    @Column
     private Integer inspectionTime;
     
-    @Column(nullable = false)
+    @Column
     private String imageUrl;
     
     private String remark;
