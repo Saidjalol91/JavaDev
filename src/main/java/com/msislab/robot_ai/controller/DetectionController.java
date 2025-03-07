@@ -1,4 +1,7 @@
 package com.msislab.robot_ai.controller;
+import java.time.LocalDateTime;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -7,20 +10,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.msislab.robot_ai.model.Detection;
-
-
-
+import com.msislab.robot_ai.repository.DetectionRepository;
 
 
 @RestController
-@RequestMapping
+@RequestMapping("/detections") 
 public class DetectionController { 
+    
+    @Autowired
+    private DetectionRepository detectionRepository;
 
-    // POST endpoint to create a new detection
-    @PostMapping("/detections")
-    public ResponseEntity<String> createDetection(@RequestBody Detection detection) {
-        return ResponseEntity.ok("successed");
-        //return detectionService.createDetection(detection);
+    @PostMapping
+    public ResponseEntity<Detection> createDetection(@RequestBody Detection detection) {
+        //detection.setTimestamp(LocalDateTime.now());
+        Detection savedDetection = detectionRepository.save(detection);
+        return ResponseEntity.ok(savedDetection);
     }
 }
 
