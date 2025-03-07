@@ -46,5 +46,5 @@ public class Detection {
     @Column(nullable = false)
     private String imageUrl;
     
-    private String remarks;
+    private String remark;
 }

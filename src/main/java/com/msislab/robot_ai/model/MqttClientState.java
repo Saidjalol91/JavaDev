@@ -18,9 +18,9 @@ public class MqttClientState {
     private Long id;
     
     @Column(nullable = false)
-    private String status = "AVAIL";
+    private final String status = "AVAIL";
     
     @Column(nullable = false)
-    private LocalDateTime lastUpdated = LocalDateTime.now();
+    private final LocalDateTime lastUpdated = LocalDateTime.now();
 }
 

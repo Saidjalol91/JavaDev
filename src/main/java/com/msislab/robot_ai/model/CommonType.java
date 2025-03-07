@@ -28,12 +28,13 @@ public class CommonType {
     private Integer commonId;
     
     @Column(nullable = false, updatable = false)
-    private LocalDateTime createdAt = LocalDateTime.now();
+   
+    private final LocalDateTime createdAt = LocalDateTime.now();
     
     private LocalDateTime updatedAt;
     
     @Column(nullable = false)
-    private String createdBy = "admin";
+    private final String createdBy = "admin";
     
     private String updatedBy;
 }
